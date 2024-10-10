@@ -1,212 +1,212 @@
 <h1>SETUP INSTRUCTION</h1>
 
-1. Prerequisites
-Node.js: Ensure you have Node.js installed (version 14.x or higher recommended). You can download it from Node.js official website.
-MongoDB: You need access to a MongoDB database. You can use a local MongoDB installation or a cloud service like MongoDB Atlas.
+1. Prerequisites</br>
+Node.js: Ensure you have Node.js installed (version 14.x or higher recommended). You can download it from Node.js official website.</br>
+MongoDB: You need access to a MongoDB database. You can use a local MongoDB installation or a cloud service like MongoDB Atlas.</br>
 
-2. Clone the Repository
-If your code is hosted on a version control system (like GitHub), you can clone it:
-git clone https://github.com/your-username/your-repository-name.git
-cd your-repository-name
+2. Clone the Repository</br>
+If your code is hosted on a version control system (like GitHub), you can clone it:</br>
+git clone https://github.com/your-username/your-repository-name.git</br>
+cd your-repository-name</br>
 
-3. Navigate to the Project Directory
-Change into the directory where your backend code is located:
-cd path/to/your/backend
+3. Navigate to the Project Directory</br>
+Change into the directory where your backend code is located.</br>
+cd path/to/your/backend</br>
 
-4. Install Dependencies
-Install the required dependencies listed in package.json. If there’s no package.json, you’ll need to create one and manually add dependencies:
-npm install
+4. Install Dependencies</br>
+Install the required dependencies listed in package.json. If there’s no package.json, you’ll need to create one and manually add dependencies:</br>
+npm install</br>
 
-5. Configure Environment Variables
-Create a .env file in your project root (if not already present) and set the following environment variables:
-PORT=3001
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name?retryWrites=true&w=majority
-JWT_SECRET=your_jwt_secret_key
-Replace the values with your actual MongoDB connection string and a secret key for JWT.
+5. Configure Environment Variables</br>
+Create a .env file in your project root (if not already present) and set the following environment variables:</br>
+PORT=3001</br>
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name?retryWrites=true&w=majority</br>
+JWT_SECRET=your_jwt_secret_key</br></br>
+Replace the values with your actual MongoDB connection string and a secret key for JWT.</br>
 
-6. Start the MongoDB Server
-If you're using a local MongoDB server, make sure it’s running. If you're using MongoDB Atlas, ensure your IP is whitelisted and you have the correct connection string.
+6. Start the MongoDB Server</br>
+If you're using a local MongoDB server, make sure it’s running. If you're using MongoDB Atlas, ensure your IP is whitelisted and you have the correct connection string.</br>
 
-8. Run the Application
-Start your Node.js server using:
-npm start
+8. Run the Application</br>
+Start your Node.js server using:</br>
+npm start</br>
 
 <h1>ENVIRONMENT VARIABLE</h1>
 
-1. PORT
-Description: Specifies the port on which your server will listen for incoming requests.
-Example: PORT=3001
-Usage: Helps to avoid hardcoding the port number in your application code, allowing for flexibility during development or deployment.
+1. PORT</br>
+Description: Specifies the port on which your server will listen for incoming requests.</br>
+Example: PORT=3001</br>
+Usage: Helps to avoid hardcoding the port number in your application code, allowing for flexibility during development or deployment.</br>
 
-3. MONGO_URI
-Description: The connection string to your MongoDB database. This can be a URI for a local database or a cloud database like MongoDB Atlas.
-Example:
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name?retryWrites=true&w=majority
-Usage: Allows the application to connect to the database without exposing the connection details in the code. Always ensure sensitive information like passwords is kept secret.
+3. MONGO_URI</br>
+Description: The connection string to your MongoDB database. This can be a URI for a local database or a cloud database like MongoDB Atlas.</br>
+Example:</br>
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name?retryWrites=true&w=majority</br>
+Usage: Allows the application to connect to the database without exposing the connection details in the code. Always ensure sensitive information like passwords is kept secret.</br>
 
-4. JWT_SECRET
-Description: A secret key used for signing JSON Web Tokens (JWT). This is crucial for authenticating users and managing sessions.
-Example: JWT_SECRET=your_jwt_secret_key
-Usage: Provides a way to secure your tokens. Changing this key will invalidate all existing tokens, requiring users to log in again.
+5. JWT_SECRET</br>
+Description: A secret key used for signing JSON Web Tokens (JWT). This is crucial for authenticating users and managing sessions.</br>
+Example: JWT_SECRET=your_jwt_secret_key</br>
+Usage: Provides a way to secure your tokens. Changing this key will invalidate all existing tokens, requiring users to log in again.</br>
 
 <h1>API DOCUMENTATION</h1>
 
 <h2>User API Endpoints</h2>
 
-1. User Registration
-Endpoint: POST /user/register
-Description: Register a new user.
-Request Body:
+1. User Registration</br>
+Endpoint: POST /user/register</br>
+Description: Register a new user.</br>
+Request Body:</br>
 {
   "name": "John Doe",
   "email": "johndoe@example.com",
   "password": "password123",
   "role": "buyer" // optional, defaults to "buyer"
-}
-Responses:
-201 Created:
+}</br>
+Responses:</br>
+201 Created:</br>
 {
   "message": "User registered successfully",
   "user": "John Doe"
-}
-400 Bad Request:
+}</br>
+400 Bad Request:</br>
 {
   "error": "Please enter all fields"
-}
-500 Internal Server Error:
+}</br>
+500 Internal Server Error:</br>
 {
   "error": "User already exists"
-}
+}</br>
 
-2. User Login
-Endpoint: POST /user/login
-Description: Log in an existing user and receive access and refresh tokens.
-Request Body:
+2. User Login</br>
+Endpoint: POST /user/login</br>
+Description: Log in an existing user and receive access and refresh tokens.</br>
+Request Body:</br>
 {
   "email": "johndoe@example.com",
   "password": "password123"
-}
-Responses:
-200 OK:
+}</br>
+Responses:</br>
+200 OK:</br>
 {
   "message": "User logged in successfully",
   "accessToken": "your_access_token",
   "refreshToken": "your_refresh_token",
   "userid": "user_id_here"
-}
-400 Bad Request:
+}</br>
+400 Bad Request:</br>
 {
   "error": "Please enter all fields"
-}
-404 Not Found:
+}</br>
+404 Not Found:</br>
 {
   "error": "User does not exist please register"
-}
-401 Unauthorized:
+}</br>
+401 Unauthorized:</br>
 {
   "error": "Invalid credentials"
-}
+}</br>
 
-3. Refresh Token
-Endpoint: POST /user/refreshToken
-Description: Generate a new access token using the refresh token.
-Request Body:
+3. Refresh Token</br>
+Endpoint: POST /user/refreshToken</br>
+Description: Generate a new access token using the refresh token.</br>
+Request Body:</br>
 {
   "refreshToken": "your_refresh_token"
-}
-Responses:
-200 OK:
+}</br>
+Responses:</br>
+200 OK:</br>
 {
   "message": "Token refreshed successfully",
   "accessToken": "new_access_token"
-}
-400 Bad Request:
+}</br>
+400 Bad Request:</br>
 {
   "error": "Please provide a refresh token"
-}
-500 Internal Server Error:
+}</br>
+500 Internal Server Error:</br>
 {
   "error": "Invalid refresh token"
-}
+}</br>
 
-4. User Logout
-Endpoint: GET /user/logout
-Description: Log out a user and blacklist the token.
-Headers:
-Authorization: Bearer your_access_token
-Responses:
-200 OK:
+4. User Logout</br>
+Endpoint: GET /user/logout</br>
+Description: Log out a user and blacklist the token.</br>
+Headers:</br>
+Authorization: Bearer your_access_token</br>
+Responses:</br>
+200 OK:</br>
 {
   "message": "User logged out successfully"
-}
+}</br>
 
-5. Get User ID
-Endpoint: GET /user/userid
-Description: Retrieve user information (excluding password).
-Headers:
-Authorization: Bearer your_access_token
-Responses:
-200 OK:
+5. Get User ID</br>
+Endpoint: GET /user/userid</br>
+Description: Retrieve user information (excluding password).</br>
+Headers:</br>
+Authorization: Bearer your_access_token</br>
+Responses:</br>
+200 OK:</br>
 {
   "name": "John Doe",
   "email": "johndoe@example.com",
   "role": "buyer"
-}
-500 Internal Server Error:
+}</br>
+500 Internal Server Error:</br>
 {
   "error": "Error retrieving user"
-}
+}</br>
 
-6. Get User by ID
-Endpoint: GET /user/:id
-Description: Get a specific user by their ID (admins can view all users, others can only view their own).
-Headers:
-Authorization: Bearer your_access_token
-Responses:
-200 OK:
+6. Get User by ID</br>
+Endpoint: GET /user/:id</br>
+Description: Get a specific user by their ID (admins can view all users, others can only view their own).</br>
+Headers:</br>
+Authorization: Bearer your_access_token</br>
+Responses:</br>
+200 OK:</br>
 {
   "_id": "user_id_here",
   "name": "John Doe",
   "email": "johndoe@example.com"
-}
-400 Bad Request:
+}</br>
+400 Bad Request:</br>
 {
   "error": "Profile Only api endpoint"
-}
-500 Internal Server Error:
+}</br>
+500 Internal Server Error:</br>
 {
   "error": "User not found"
-}
+}</br>
 
-7. Update User
-Endpoint: PATCH /user/update/:id
-Description: Update a user's information (admin only).
-Request Body:
+7. Update User</br>
+Endpoint: PATCH /user/update/:id</br>
+Description: Update a user's information (admin only).</br>
+Request Body:</br>
 {
   "name": "John Doe",
   "email": "johndoe@example.com",
   "password": "newpassword123",
   "role": "admin"
-}
-Responses:
-200 OK:
+}</br>
+Responses:</br>
+200 OK:</br>
 {
   "message": "User updated successfully"
-}
-400 Bad Request:
+}</br>
+400 Bad Request:</br>
 {
   "error": "Please enter fields"
-}
-500 Internal Server Error:
+}</br>
+500 Internal Server Error:</br>
 {
   "error": "User not found"
-}
+}</br>
 
-8. Delete User
-Endpoint: GET /user/delete/:id
-Description: Delete a user by ID (admin only).
-Responses:
-200 OK:
+8. Delete User</br>
+Endpoint: GET /user/delete/:id</br>
+Description: Delete a user by ID (admin only).</br>
+Responses:</br>
+200 OK:</br>
 {
   "message": "User deleted successfully"
 }
