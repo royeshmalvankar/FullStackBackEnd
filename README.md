@@ -209,21 +209,21 @@ Responses:</br>
 200 OK:</br>
 {
   "message": "User deleted successfully"
-}
-500 Internal Server Error:
+}</br>
+500 Internal Server Error:</br>
 {
   "error": "User not found"
-}
+}</br>
 
 <h2>Product API Endpoints</h2>
 
-1. Get All Products
-Endpoint: GET /product/
-Description: Retrieve all products. Admins and buyers can view all products; sellers can view their own products.
-Headers:
-Authorization: Bearer your_access_token
-Responses:
-200 OK:
+1. Get All Products</br>
+Endpoint: GET /product/</br>
+Description: Retrieve all products. Admins and buyers can view all products; sellers can view their own products.</br>
+Headers:</br>
+Authorization: Bearer your_access_token</br>
+Responses:</br>
+200 OK:</br>
 {
   "products": [
     {
@@ -235,25 +235,25 @@ Responses:
       "sellerId": "user_id_here"
     }
   ]
-}
-400 Bad Request:
+}</br>
+400 Bad Request:</br>
 {
   "error": "Error retrieving products"
-}
+}</br>
 
-2. Search Products
-Endpoint: GET /product/search
-Description: Search for products based on query parameters like name and price.
-Query Parameters:
-name: Partial name of the product (optional)
-min: Minimum price (optional)
-max: Maximum price (optional)
-page: Page number for pagination (optional, defaults to 1)
-limit: Number of products per page (optional, defaults to 10)
-order: Sort order (asc/desc, optional, defaults to asc)
-sortby: Field to sort by (optional)
-Responses:
-200 OK:
+2. Search Products</br>
+Endpoint: GET /product/search</br>
+Description: Search for products based on query parameters like name and price.</br>
+Query Parameters:</br>
+name: Partial name of the product (optional)</br>
+min: Minimum price (optional)</br>
+max: Maximum price (optional)</br>
+page: Page number for pagination (optional, defaults to 1)</br>
+limit: Number of products per page (optional, defaults to 10)</br>
+order: Sort order (asc/desc, optional, defaults to asc)</br>
+sortby: Field to sort by (optional)</br>
+Responses:</br>
+200 OK:</br>
 {
   "products": [
     {
@@ -265,19 +265,19 @@ Responses:
       "sellerId": "user_id_here"
     }
   ]
-}
-400 Bad Request:
+}</br>
+400 Bad Request:</br>
 {
   "error": "Error searching products"
-}
+}</br>
 
-3. Get Product by ID
-Endpoint: GET /product/:id
-Description: Retrieve a specific product by ID.
-Headers:
-Authorization: Bearer your_access_token
-Responses:
-200 OK:
+3. Get Product by ID</br>
+Endpoint: GET /product/:id</br>
+Description: Retrieve a specific product by ID.</br>
+Headers:</br>
+Authorization: Bearer your_access_token</br>
+Responses:</br>
+200 OK:</br>
 {
   "product": {
     "_id": "product_id_here",
@@ -287,29 +287,29 @@ Responses:
     "quantity": 10,
     "sellerId": "user_id_here"
   }
-}
-400 Bad Request:
+}</br>
+400 Bad Request:</br>
 {
   "message": "Product not found"
-}
-500 Internal Server Error:
+}</br>
+500 Internal Server Error:</br>
 
 {
   "error": "Error retrieving product"
-}
+}</br>
 
-4. Add Product
-Endpoint: POST /product/add
-Description: Add a new product (admin and seller only).
-Request Body:
+4. Add Product</br>
+Endpoint: POST /product/add</br>
+Description: Add a new product (admin and seller only).</br>
+Request Body:</br>
 {
   "name": "New Product",
   "description": "Product Description",
   "price": 100,
   "quantity": 10
-}
-Responses:
-200 OK:
+}</br>
+Responses:</br>
+200 OK:</br>
 {
   "message": "Product added successfully",
   "product": {
@@ -320,7 +320,7 @@ Responses:
     "quantity": 10,
     "sellerId": "user_id_here"
   }
-}
+}</br>
 
 <h1>AUTHENTICATION AND AUTHORISATION</h1>
 
@@ -366,81 +366,79 @@ Authorization: Typically restricted to certain roles, such as admin or seller.
 Process:
 The user sends a request to create a resource (e.g., add a product).
 The server checks the user’s role from the JWT payload.
-If authorized, the server processes the request; otherwise, it returns an error (e.g., 403 Forbidden).
+If authorized, the server processes the request; otherwise, it returns an error (e.g., 403 Forbidden).</br>
 B. Read (GET)
 Authorization: Generally available to all authenticated users, but can be restricted based on user roles for certain resources.
 Process:
 The user requests data (e.g., view products).
-The server checks the user's role; if the user is permitted, the server retrieves the requested data.
+The server checks the user's role; if the user is permitted, the server retrieves the requested data.</br>
 C. Update (PATCH/PUT)
 Authorization: Usually restricted to the owner of the resource (e.g., the seller of a product) or admin.
 Process:
 The user sends a request to update a resource.
 The server checks the user’s role and whether they own the resource.
-If authorized, the server updates the resource; otherwise, it returns an error.
+If authorized, the server updates the resource; otherwise, it returns an error.</br>
 D. Delete (DELETE)
 Authorization: Typically restricted to the owner of the resource or admin.
 Process:
 The user requests to delete a resource.
 The server checks the user’s role and ownership of the resource.
-If authorized, the server deletes the resource; otherwise, it returns an error.
+If authorized, the server deletes the resource; otherwise, it returns an error.</br>
 
 <h1>DEPLOYMENT INSTRUCTION</h1>
 
 Step-by-Step Deployment Instructions for Render
 1. Create a Render Account
-If you don’t have an account yet, go to Render.com and sign up for an account.
+If you don’t have an account yet, go to Render.com and sign up for an account.</br>
 
 2. Prepare Your Application
-Ensure your application is running locally without issues. This includes confirming all dependencies are installed and the server starts correctly.
+Ensure your application is running locally without issues. This includes confirming all dependencies are installed and the server starts correctly.</br>
 
 Add a start script in your package.json file if you haven't already:
 {
   "scripts": {
     "start": "node index.js"
   }
-}
+}</br>
 
 3. Push Your Code to GitHub or GitLab
 Render requires your code to be in a Git repository (GitHub, GitLab, or Bitbucket).
-Push your local code to your preferred Git provider.
+Push your local code to your preferred Git provider.</br>
 
 4. Create a New Web Service on Render
-Log in to Render and click on the New button in the top right corner, then select Web Service.
+Log in to Render and click on the New button in the top right corner, then select Web Service.</br>
 
 Connect Your Repository:
-
 Select your Git provider (e.g., GitHub, GitLab).
 Authorize Render to access your repositories if prompted.
-Choose the repository that contains your Node.js application.
+Choose the repository that contains your Node.js application.****
 Configure the Web Service:
-
-Name: Give your service a name.
-Environment: Choose Node.
-Build Command: You can leave it as the default or set it to:
-npm install
-Start Command:
-npm start
-Region: Choose the region that is closest to your users for better performance.
-Set Up Environment Variables:
+Name: Give your service a name.</br>
+Environment: Choose Node.</br>
+Build Command: You can leave it as the default or set it to:</br>
+npm install</br>
+Start Command:</br>
+npm start</br>
+Region: Choose the region that is closest to your users for better performance.</br>
+Set Up Environment Variables:</br>
 
 In the "Environment" section, click on "Add Environment Variable".
 Add your environment variables (e.g., MONGO_URI, JWT_SECRET, etc.) as they are used in your application.
 Select Branch: Choose the branch you want to deploy (usually main or master).
 
-Click on the "Create Web Service" Button: Render will now start building and deploying your application.
+Click on the "Create Web Service" Button: Render will now start building and deploying your application.</br>
 
 5. Monitor the Deployment
 After creating the web service, Render will automatically build and deploy your application.
-You can monitor the deployment process in the Render dashboard. If there are any build errors, they will be displayed here, allowing you to debug.
+You can monitor the deployment process in the Render dashboard. If there are any build errors, they will be displayed here, allowing you to debug.</br>
 
 6. Access Your Application
 Once the deployment is successful, Render will provide you with a URL (e.g., https://your-app-name.onrender.com).
-Use this URL to access your deployed application.
+Use this URL to access your deployed application.</br>
 
 7. Additional Settings
 If needed, you can configure Auto Deploys for automatic deployments on new commits to your selected branch.
-You can also set up Custom Domains if you want to use your domain name.
+You can also set up Custom Domains if you want to use your domain name.</br>
 
 8. Debugging Issues
 If you encounter any issues, check the logs in the Render dashboard. You can access logs by clicking on your service and then selecting the "Logs" tab.
